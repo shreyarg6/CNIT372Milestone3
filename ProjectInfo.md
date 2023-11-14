@@ -1,6 +1,7 @@
 # CNIT372Milestone3
 CNIT 372 Group Project: Youtube
 /*
+
 PROJECT DESCRIPTION (MILESTONE 1)
 Data we Plan to Use:
 - User information
