@@ -1,8 +1,8 @@
 CREATE OR REPLACE PACKAGE youtubeData AS
 
-  FUNCTION reverse_string(p_string IN VARCHAR2) RETURN number;
+  FUNCTION (keywordV IN VARCHAR2) RETURN number;
 
-END string_utils;
+END;
 # Question 1
 
   
