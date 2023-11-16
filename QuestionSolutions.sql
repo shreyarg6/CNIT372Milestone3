@@ -24,6 +24,6 @@ end NUMBER_OF_EMPLOYEES;
 select HighestViewCount()
 from dual;
   
-# Question 2 --------------------------------------
-
 # Question 3 --------------------------------------
+
+# Question 4 --------------------------------------
