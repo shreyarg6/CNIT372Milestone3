@@ -7,8 +7,7 @@ PROJECT DESCRIPTION (MILESTONE 1)
 Data we Plan to Use:
 - User information
 - User Interactions
-- Search History
-- Watch History
+- Search/Watch History
 
 Insights Derived from Data:
 - Users’ patterns
