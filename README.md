@@ -3,16 +3,19 @@ CNIT 372 Group Project: Youtube
 /*
 
 PROJECT DESCRIPTION (MILESTONE 1)
+
 Data we Plan to Use:
 - User information
 - User Interactions
 - Search History
 - Watch History
+
 Insights Derived from Data:
 - Users’ patterns
 - Their interactions with videos
 - Data related to their search and watch history
 - Their overall interests
+
 Significance/Importance of Listed Insights:
 - A users’ personal information like their name, age, location, time of day, etc. and history can give insight into the users’ interests. As users’ we would be able to understand how or why certain videos get recommended to us. We would be able to continue seeing what we wanted. We would be able to analyze personal habits and continue to use our time in an efficient manner. 
 Relationship among tables
@@ -30,5 +33,15 @@ to the time of day?
 8. What types of videos get more comments on their videos?
 9. What type of videos are blocked and not allowed in some organizations?
 10. What speed are the videos played at (playback speed)?
+
+CONTRIBUTION
+
+All: All members put in equal efforts towards Milestone 3. There was consistent communication on the internal deadlines and what needed to be done. All members virtually met to discuss the Milestone 2 goals and complete the 10 questions. 
+
+Shreya Guddeti: 
+
+Rishika Thorat:
+
+Kush Patel: 
 
 */
