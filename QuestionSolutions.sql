@@ -21,8 +21,12 @@ begin
 end NUMBER_OF_EMPLOYEES;
 
 # test function
-select HighestViewCount()
-from dual;
+DECLARE
+  highestViewedVideoType;
+BEGIN
+  highestViewedVideoType := HighestViewCount();
+  DBMS_OUTPUT.PUT_LINE('The videos with the highest views are: ' || highestViewedVideoType);
+END;
   
 # Question 3 --------------------------------------
 
