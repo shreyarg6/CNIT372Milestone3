@@ -5,7 +5,7 @@ CREATE OR REPLACE PACKAGE youtubeData AS
 
 END;
 
-# Question 1: Which type of video has the most number of views?
+-- Question 1: Which type of video has the most number of views?
 create or replace function HighestViewCount
     return varchar2
 as
@@ -31,7 +31,7 @@ END;
 
 
   
-# Question 2
+-- Question 2: Which type of video is most popular in each age range based on likes? (ex). 13-17)
 
 CREATE OR REPLACE PROCEDURE GetPopularVideosByAge AS
 BEGIN
@@ -58,7 +58,7 @@ END GetPopularVideosByAge;
 
   
   
-# Question 3: Which type of video has the highest engagement (comments + likes) and how does this correlate with the age of the viewer?
+-- Question 3: Which type of video has the highest engagement (comments + likes) and how does this correlate with the age of the viewer?
 create or replace function Engagement
     (VideoType Out varchar2 (35),
     VideoAge Out number)
@@ -85,7 +85,7 @@ BEGIN
 END;
 
 
-# Question 7 
+-- Question 7: Which video categories have the most interactive communities, in terms of likes, comments, and subscriptions?
 
 CREATE OR REPLACE PROCEDURE GetMostInteractiveVideos AS
 BEGIN
@@ -106,7 +106,7 @@ BEGIN
 END GetMostInteractiveVideos;
 /
 
-# Question 8 
+-- Question 8: What types of videos get more comments on their videos?
 
 CREATE OR REPLACE PROCEDURE GetAverageCommentsPerVideo AS
 BEGIN
