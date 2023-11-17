@@ -11,7 +11,7 @@ create or replace function HighestViewCount
 as
     highestVideo varchar2(35);
 begin
-    select userhistory.videoKeyword
+    select userinteractions.Keyword
         into highestVideo
     from UserHistory 
     inner join on UserInteractions.UserID=UserHistory.UserID
