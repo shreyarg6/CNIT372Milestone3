@@ -24,7 +24,7 @@ QUESTIONS LIST (MILESTONE 2)
 1. Which type of video has the most number of views?
 2. Which type of video is most popular in each age range based on likes? (ex). 13-17)
 to the time of day?
-3. Which type of video has the highest number of searches and how does this correlate to the time of day?
+3. Which type of video has the highest number of searches and how does this with comment engagement?
 4. Which types of videos have the highest average duration of time watched, and how does this correlate with the length of the video?
 5. How will I be able to customize my homepage to show content that interests me the most?
 6. Is there a pattern in video titles or descriptions that correlates with increased viewer engagement (likes and comments)
