@@ -28,6 +28,35 @@ BEGIN
   highestViewedVideoType := HighestViewCount();
   DBMS_OUTPUT.PUT_LINE('The videos with the highest views are ' || highestViewedVideoType);
 END;
+
+
+  
+# Question 2
+
+CREATE OR REPLACE PROCEDURE GetPopularVideosByAge AS
+BEGIN
+    FOR AgeRangeInfo IN (SELECT DISTINCT AgeRange FROM UserInfo)
+    LOOP
+        FOR VideoInfo IN (
+            SELECT
+                UserInfo.AgeRange,
+                UserHistory.VideoKeyword,
+                MAX(UserInteractions.NumberOfLikes) AS MaxLikes
+            FROM UserInfo
+            JOIN UserHistory ON UserInfo.UserID = UserHistory.UserID
+            JOIN UserInteractions ON UserInteractions.UserID = UserHistory.UserID
+            WHERE UserInfo.AgeRange = AgeRangeInfo.AgeRange
+            GROUP BY UserInfo.AgeRange, UserHistory.VideoKeyword
+        )
+        LOOP
+            DBMS_OUTPUT.PUT_LINE('Age Range: ' || AgeRangeInfo.AgeRange || ', Video Keyword: ' || VideoInfo.VideoKeyword || ', Max Likes: ' || VideoInfo.MaxLikes);
+        END LOOP;
+    END LOOP;
+END GetPopularVideosByAge;
+/
+
+
+  
   
 # Question 3: Which type of video has the highest engagement (comments + likes) and how does this correlate with the age of the viewer?
 create or replace function Engagement
@@ -54,30 +83,7 @@ BEGIN
     Engagement(VideoType, VideoAge);
     DBMS_OUTPUT.PUT_LINE('Video with highest engagement: ' || VideoType || ' (Age: ' || VideoAge || ')');
 END;
-  
-# Question 2
 
-CREATE OR REPLACE PROCEDURE GetPopularVideosByAge AS
-BEGIN
-    FOR AgeRangeInfo IN (SELECT DISTINCT AgeRange FROM UserInfo)
-    LOOP
-        FOR VideoInfo IN (
-            SELECT
-                UserInfo.AgeRange,
-                UserHistory.VideoKeyword,
-                MAX(UserInteractions.NumberOfLikes) AS MaxLikes
-            FROM UserInfo
-            JOIN UserHistory ON UserInfo.UserID = UserHistory.UserID
-            JOIN UserInteractions ON UserInteractions.UserID = UserHistory.UserID
-            WHERE UserInfo.AgeRange = AgeRangeInfo.AgeRange
-            GROUP BY UserInfo.AgeRange, UserHistory.VideoKeyword
-        )
-        LOOP
-            DBMS_OUTPUT.PUT_LINE('Age Range: ' || AgeRangeInfo.AgeRange || ', Video Keyword: ' || VideoInfo.VideoKeyword || ', Max Likes: ' || VideoInfo.MaxLikes);
-        END LOOP;
-    END LOOP;
-END GetPopularVideosByAge;
-/
 
 # Question 7 
 
