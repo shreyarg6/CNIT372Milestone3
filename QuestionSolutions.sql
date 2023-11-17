@@ -1,6 +1,7 @@
 CREATE OR REPLACE PACKAGE youtubeData AS
 
   FUNCTION HighestViewCount RETURN videoKeyword;
+  FUNCTION Engagement (OUT videoKeyword VARCHAR2(35), OUT videoAge NUMBER);
 
 END;
 
