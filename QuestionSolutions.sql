@@ -47,11 +47,11 @@ end NUMBER_OF_EMPLOYEES;
 
 # test function
 DECLARE
-  VideoType varchar2(35);
-  VideoAge number;
+    VideoType VARCHAR2(35);
+    VideoAge NUMBER;
 BEGIN
-  highestViewedVideoType := HighestViewCount();
-  DBMS_OUTPUT.PUT_LINE('The videos with the highest views are ' || highestViewedVideoType);
+    Engagement(VideoType, VideoAge);
+    DBMS_OUTPUT.PUT_LINE('Video with highest engagement: ' || VideoType || ' (Age: ' || VideoAge || ')');
 END;
   
 # Question 4 
