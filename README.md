@@ -2,6 +2,8 @@
 CNIT 372 Group Project: Youtube
 /*
 
+Group Names: Rishika Thorat, Kush Patel, Shreya Guddeti
+
 PROJECT DESCRIPTION (MILESTONE 1)
 
 Data we Plan to Use:
