@@ -15,12 +15,7 @@ CREATE TABLE UserInteractions (
     Views INTEGER
 );
 
-COPY Video(VideoID, Title, Date, Keyword, Likes, Comments, Views)
+COPY UserInteractions(VideoID, Title, Date, Keyword, Likes, Comments, Views)
 FROM 'user-history.csv'
 DELIMITER '
-CSV HEADER;
-
-COPY Comments(VideoID, CommentText, Likes, Sentiment)
-FROM 'user-history.csv'
-DELIMITER ','
 CSV HEADER;
