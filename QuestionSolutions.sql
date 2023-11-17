@@ -4,7 +4,7 @@ CREATE OR REPLACE PACKAGE youtubeData AS
 
 END;
 
-# Question 1 --------------------------------------
+# Question 1: Which type of video has the most number of views? --------------------------------------
 create or replace function HighestViewCount
     return varchar2
 as
