@@ -1,8 +1,9 @@
 # CNIT372Milestone3
-CNIT 372 Group Project: Youtube
+CNIT 372 Group 5. The purpose of this project is to analyze Youtube usage and get insights from user information and interactions. This will help us to address interests and questions related to video popularity, user/viewer demographics, user search patterns, and community engagement. 
+
 /*
 
-Group Names: Rishika Thorat, Kush Patel, Shreya Guddeti
+Group Member Names: Rishika Thorat, Kush Patel, Shreya Guddeti
 
 PROJECT DESCRIPTION (MILESTONE 1)
 
@@ -41,7 +42,7 @@ All: All members put in equal efforts towards Milestone 3. There was consistent 
 
 Shreya Guddeti: Created the GitHub repository and created the QuestionSolutions, YoutubeData, and ReadMe files. Organized and added the project description and question list to the readme file. Created the initial coding solutions to questions 1 and 3.
 
-Rishika Thorat: Helped to process the CSV files found within the Kraggle Youtube Statistics folder. Created the tables within the YoutubeData file, and copied the data from the CSV files into 2 of the created tables. Created the coding solutions to Questions 2 and 7. Updated the solution to Question 1 so that it matched the data and ran correctly. 
+Rishika Thorat: Helped to process the CSV files found within the Kraggle Youtube Statistics folder. Created the tables within the YoutubeData file, and copied the data from the CSV files into 2 of the created tables. Created the coding solutions to Questions 2 and 7. Updated the solution to Question 1 so that it matched the data in YoutubeData and ran correctly. 
 
-Kush Patel: Helped to process the CSV files found within the Kraggle Youtube Statistics folder. Created the coding solution to Question 8. Updated the solution to Question 3 so that it matched the data and ran correctly. 
+Kush Patel: Helped to process the CSV files found within the Kraggle Youtube Statistics folder. Created the coding solution to Question 8. Updated the solution to Question 3 so that it matched the data in YoutubeData and ran correctly. 
 */
