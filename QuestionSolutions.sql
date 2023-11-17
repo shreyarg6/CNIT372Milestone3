@@ -28,7 +28,7 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('The videos with the highest views are ' || highestViewedVideoType);
 END;
   
-# Question 3: Which type of video has the highest number of searches and how does this with comment engagement?
+# Question 3: Which type of video has the highest engagement (comments + likes) and how does this correlate with the age of the viewer?
 
   
 # Question 4 
