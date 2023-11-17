@@ -55,8 +55,35 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Video with highest engagement: ' || VideoType || ' (Age: ' || VideoAge || ')');
 END;
   
-# Question 4 
+# Question 2
+
+SELECT 
+    UserInfo.AgeRange,
+    UserHistory.VideoKeyword,
+    MAX(UserInteractions.NumberOfLikes) AS MaxLikes
+FROM UserInfo
+JOIN UserHistory ON UserInfo.UserID = UserHistory.UserID
+JOIN UserInteractions ON UserInteractions.UserID = UserHistory.UserID
+GROUP BY UserInfo.AgeRange, UserHistory.VideoKeyword;
 
 # Question 7 
 
+SELECT
+    UserHistory.VideoKeyword,
+    SUM(UserInteractions.NumberOfLikes) AS TotalLikes,
+    SUM(UserInteractions.NumberOfComments) AS TotalComments,
+    SUM(UserInteractions.NumberOfSubscriptions) AS TotalSubscriptions
+FROM UserHistory
+JOIN UserInteractions ON UserInteractions.UserID = UserHistory.UserID
+GROUP BY UserHistory.VideoKeyword
+ORDER BY TotalLikes DESC, TotalComments DESC, TotalSubscriptions DESC;
+
 # Question 8 
+
+SELECT
+    UserHistory.VideoKeyword,
+    AVG(UserInteractions.NumberOfComments) AS AvgComments
+FROM UserHistory
+JOIN UserInteractions ON UserInteractions.UserID = UserHistory.UserID
+GROUP BY UserHistory.VideoKeyword
+ORDER BY AvgComments DESC;
