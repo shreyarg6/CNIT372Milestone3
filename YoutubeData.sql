@@ -1,19 +1,26 @@
 CREATE TABLE UserInfo (
     UserID NUMBER PRIMARY KEY,
+    Username VARCHAR2(20),
+    Country VARCHAR2(20),
     Age NUMBER,
 );
 
-INSERT INTO UserInfo (UserID, Age)
-VALUES (1, 25);
 
-INSERT INTO UserInfo (UserID, Age)
-VALUES (2, 30);
+CREATE TABLE UserInteractions (
+    VideoID NUMBER PRIMARY KEY,
+    Title VARCHAR2(50),
+    Keyword VARCHAR2(15),
+    Likes INTEGER,
+    Comments VARCHAR2(50),
+    Views INTEGER
+);
 
-INSERT INTO UserInfo (UserID, Age)
-VALUES (3, 20);
+COPY Video(VideoID, Title, Date, Keyword, Likes, Comments, Views)
+FROM '/Users/Username/Desktop/Fall2023/CNIT372/Youtube Statistics/videos-stats.csv'
+DELIMITER '
+CSV HEADER;
 
-INSERT INTO UserInfo (UserID, Age)
-VALUES (4, 50);
-
-COMMIT;
-
+COPY Comments(VideoID, CommentText, Likes, Sentiment)
+FROM '/Users/Username/Desktop/Fall2023/CNIT372/Youtube Statistics/comments.csv'
+DELIMITER ','
+CSV HEADER;
