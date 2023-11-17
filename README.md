@@ -37,7 +37,7 @@ CONTRIBUTION
 
 All: All members put in equal efforts towards Milestone 3. There was consistent communication on the internal deadlines and what needed to be done. All members virtually met to discuss the Milestone 3 goals to complete our GitHub repository.
 
-Shreya Guddeti: 
+Shreya Guddeti: Created the GitHub repository and created the three files. Organized and added the project description and question list to the readme file. Created the solutions to questions 1 and 3.
 
 Rishika Thorat:
 
