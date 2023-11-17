@@ -25,9 +25,14 @@ DECLARE
   highestViewedVideoType;
 BEGIN
   highestViewedVideoType := HighestViewCount();
-  DBMS_OUTPUT.PUT_LINE('The videos with the highest views are: ' || highestViewedVideoType);
+  DBMS_OUTPUT.PUT_LINE('The videos with the highest views are ' || highestViewedVideoType);
 END;
   
 # Question 3 --------------------------------------
 
+  
 # Question 4 --------------------------------------
+
+# Question 7 --------------------------------------
+
+# Question 8 --------------------------------------
