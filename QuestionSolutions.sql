@@ -6,121 +6,89 @@ CREATE OR REPLACE PACKAGE youtubeData AS
 END;
 
 -- Question 1: Which type of video has the most number of views?
-create or replace function HighestViewCount
-    return varchar2
-as
-    highestVideo varchar2(35);
-begin
-    select userinteractions.Keyword
-        into highestVideo
-    from UserHistory 
-    inner join on UserInteractions.UserID=UserHistory.UserID
-    order by UserInteractions.numberOfViews
-    fetch first row only;
-    
-    return highestVideo;
-end NUMBER_OF_EMPLOYEES;
-
-# test function
-DECLARE
-  highestViewedVideoType varchar2(35);
+CREATE OR REPLACE FUNCTION MostViewedVideo RETURN VARCHAR2 IS
+    v_Keyword UserInteractions.Keyword%TYPE;
 BEGIN
-  highestViewedVideoType := HighestViewCount();
-  DBMS_OUTPUT.PUT_LINE('The videos with the highest views are ' || highestViewedVideoType);
-END;
+    SELECT Keyword
+    INTO v_Keyword
+    FROM (
+        SELECT Keyword, MAX(Views) AS MaxViews
+        FROM UserInteractions
+        GROUP BY Keyword
+    )
+    WHERE ROWNUM = 1;
+
+    RETURN v_Keyword;
+END MostViewedVideo;
+/
 
 
   
--- Question 2: Which type of video is most popular in each age range based on likes? (ex). 13-17)
+-- Question 2: Which type of video is most popular in each age range based on likes? (ex). (13-17)
 
-CREATE OR REPLACE PROCEDURE GetPopularVideosByAge AS
+CREATE OR REPLACE PROCEDURE PopularVideosByAgeRange IS
 BEGIN
-    FOR AgeRangeInfo IN (SELECT DISTINCT AgeRange FROM UserInfo)
-    LOOP
-        FOR VideoInfo IN (
-            SELECT
-                UserInfo.AgeRange,
-                UserHistory.VideoKeyword,
-                MAX(UserInteractions.NumberOfLikes) AS MaxLikes
-            FROM UserInfo
-            JOIN UserHistory ON UserInfo.UserID = UserHistory.UserID
-            JOIN UserInteractions ON UserInteractions.UserID = UserHistory.UserID
-            WHERE UserInfo.AgeRange = AgeRangeInfo.AgeRange
-            GROUP BY UserInfo.AgeRange, UserHistory.VideoKeyword
-        )
-        LOOP
-            DBMS_OUTPUT.PUT_LINE('Age Range: ' || AgeRangeInfo.AgeRange || ', Video Keyword: ' || VideoInfo.VideoKeyword || ', Max Likes: ' || VideoInfo.MaxLikes);
+    FOR age_rec IN (SELECT DISTINCT Age FROM UserInfo) LOOP
+        FOR video_rec IN (
+            SELECT ui.Keyword, ui.Likes, ui.AgeRange
+            FROM UserInteractions ui
+            JOIN UserInfo u ON ui.UserID = u.UserID
+            WHERE ui.Likes = (
+                SELECT MAX(Likes)
+                FROM UserInteractions
+                WHERE AgeRange = age_rec.Age
+                GROUP BY AgeRange
+            )
+        ) LOOP
+            DBMS_OUTPUT.PUT_LINE('Age Range: ' || age_rec.Age || ', Keyword: ' || video_rec.Keyword || ', Likes: ' || video_rec.Likes);
         END LOOP;
     END LOOP;
-END GetPopularVideosByAge;
+END PopularVideosByAgeRange;
 /
-
 
   
   
 -- Question 3: Which type of video has the highest engagement (comments + likes) and how does this correlate with the age of the viewer?
-create or replace function Engagement
-    (VideoType Out varchar2 (35),
-    VideoAge Out number)
-as
-    VideoType varchar2(35);
-    VideoAge number;
-begin
-    select userhistory.videoKeyword into VideoType, userinfo.age into VideoAge
-    from UserHistory 
-    inner join on UserInteractions.UserID=UserHistory.UserID
-    inner join on UserHistory.UserId = UserInfo.UserID
-    where max(UserInteractions.numberOfLikes + UserInteractions.numberOfComments)
-    
-    return VideoType, VideoAge;
-end NUMBER_OF_EMPLOYEES;
-
-# test function
-DECLARE
-    VideoType VARCHAR2(35);
-    VideoAge NUMBER;
+CREATE OR REPLACE PROCEDURE VideoSearchCorrelation IS
 BEGIN
-    Engagement(VideoType, VideoAge);
-    DBMS_OUTPUT.PUT_LINE('Video with highest engagement: ' || VideoType || ' (Age: ' || VideoAge || ')');
-END;
+    FOR search_rec IN (
+        SELECT Keyword, COUNT(*) AS SearchCount, TO_CHAR(Date, 'HH24') AS HourOfDay
+        FROM UserInteractions
+        WHERE Keyword IS NOT NULL
+        GROUP BY Keyword, TO_CHAR(Date, 'HH24')
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE('Keyword: ' || search_rec.Keyword || ', Searches: ' || search_rec.SearchCount || ', Hour of Day: ' || search_rec.HourOfDay);
+    END LOOP;
+END VideoSearchCorrelation;
+/
 
 
 -- Question 7: Which video categories have the most interactive communities, in terms of likes, comments, and subscriptions?
 
-CREATE OR REPLACE PROCEDURE GetMostInteractiveVideos AS
+CREATE OR REPLACE PROCEDURE InteractiveCommunities IS
 BEGIN
-    FOR VideoInfo IN (
-        SELECT
-            UserHistory.VideoKeyword,
-            SUM(UserInteractions.NumberOfLikes) AS TotalLikes,
-            SUM(UserInteractions.NumberOfComments) AS TotalComments,
-            SUM(UserInteractions.NumberOfSubscriptions) AS TotalSubscriptions
-        FROM UserHistory
-        JOIN UserInteractions ON UserInteractions.UserID = UserHistory.UserID
-        GROUP BY UserHistory.VideoKeyword
+    FOR comm_rec IN (
+        SELECT ui.Keyword, SUM(ui.Likes) AS TotalLikes, SUM(ui.Comments) AS TotalComments, SUM(ui.Subscriptions) AS TotalSubscriptions
+        FROM UserInteractions ui
+        GROUP BY ui.Keyword
         ORDER BY TotalLikes DESC, TotalComments DESC, TotalSubscriptions DESC
-    )
-    LOOP
-        DBMS_OUTPUT.PUT_LINE('Video Keyword: ' || VideoInfo.VideoKeyword || ', Total Likes: ' || VideoInfo.TotalLikes || ', Total Comments: ' || VideoInfo.TotalComments || ', Total Subscriptions: ' || VideoInfo.TotalSubscriptions);
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE('Keyword: ' || comm_rec.Keyword || ', Total Likes: ' || comm_rec.TotalLikes || ', Total Comments: ' || comm_rec.TotalComments || ', Total Subscriptions: ' || comm_rec.TotalSubscriptions);
     END LOOP;
-END GetMostInteractiveVideos;
+END InteractiveCommunities;
 /
 
 -- Question 8: What types of videos get more comments on their videos?
 
-CREATE OR REPLACE PROCEDURE GetAverageCommentsPerVideo AS
+CREATE OR REPLACE PROCEDURE VideosWithMoreComments IS
 BEGIN
-    FOR VideoInfo IN (
-        SELECT
-            UserHistory.VideoKeyword,
-            AVG(UserInteractions.NumberOfComments) AS AvgComments
-        FROM UserHistory
-        JOIN UserInteractions ON UserInteractions.UserID = UserHistory.UserID
-        GROUP BY UserHistory.VideoKeyword
+    FOR comments_rec IN (
+        SELECT ui.Keyword, AVG(ui.Comments) AS AvgComments
+        FROM UserInteractions ui
+        GROUP BY ui.Keyword
         ORDER BY AvgComments DESC
-    )
-    LOOP
-        DBMS_OUTPUT.PUT_LINE('Video Keyword: ' || VideoInfo.VideoKeyword || ', Average Comments: ' || VideoInfo.AvgComments);
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE('Keyword: ' || comments_rec.Keyword || ', Average Comments: ' || comments_rec.AvgComments);
     END LOOP;
-END GetAverageCommentsPerVideo;
+END VideosWithMoreComments;
 /
