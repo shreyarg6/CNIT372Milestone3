@@ -16,11 +16,11 @@ CREATE TABLE UserInteractions (
 );
 
 COPY Video(VideoID, Title, Date, Keyword, Likes, Comments, Views)
-FROM '/Users/Username/Desktop/Fall2023/CNIT372/Youtube Statistics/videos-stats.csv'
+FROM 'user-history.csv'
 DELIMITER '
 CSV HEADER;
 
 COPY Comments(VideoID, CommentText, Likes, Sentiment)
-FROM '/Users/Username/Desktop/Fall2023/CNIT372/Youtube Statistics/comments.csv'
+FROM 'user-history.csv'
 DELIMITER ','
 CSV HEADER;
