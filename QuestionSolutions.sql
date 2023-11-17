@@ -4,7 +4,7 @@ CREATE OR REPLACE PACKAGE youtubeData AS
 
 END;
 
-# Question 1: Which type of video has the most number of views? --------------------------------------
+# Question 1: Which type of video has the most number of views?
 create or replace function HighestViewCount
     return varchar2
 as
@@ -28,11 +28,11 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('The videos with the highest views are ' || highestViewedVideoType);
 END;
   
-# Question 3 --------------------------------------
+# Question 3: Which type of video has the highest number of searches and how does this with comment engagement?
 
   
-# Question 4 --------------------------------------
+# Question 4 
 
-# Question 7 --------------------------------------
+# Question 7 
 
-# Question 8 --------------------------------------
+# Question 8 
