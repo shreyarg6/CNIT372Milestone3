@@ -39,10 +39,9 @@ CONTRIBUTION
 
 All: All members put in equal efforts towards Milestone 3. There was consistent communication on the internal deadlines and what needed to be done. All members virtually met to discuss the Milestone 3 goals to complete our GitHub repository.
 
-Shreya Guddeti: Created the GitHub repository and created the three files. Organized and added the project description and question list to the readme file. Created the solutions to questions 1 and 3.
+Shreya Guddeti: Created the GitHub repository and created the QuestionSolutions, YoutubeData, and ReadMe files. Organized and added the project description and question list to the readme file. Created the initial coding solutions to questions 1 and 3.
 
-Rishika Thorat:
+Rishika Thorat: Helped to process the CSV files found within the Kraggle Youtube Statistics folder. Created the tables within the YoutubeData file, and copied the data from the CSV files into 2 of the created tables. Created the coding solutions to Questions 2 and 7. Updated the solution to Question 1 so that it matched the data and ran correctly. 
 
-Kush Patel: 
-
+Kush Patel: Helped to process the CSV files found within the Kraggle Youtube Statistics folder. Created the coding solution to Question 8. Updated the solution to Question 3 so that it matched the data and ran correctly. 
 */
