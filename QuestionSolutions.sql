@@ -51,7 +51,7 @@ END PopularVideosByAgeRange;
 
   
   
--- Question 3: Which type of video has the highest engagement (comments + likes) and how does this correlate with the age of the viewer?
+-- Question 3: Which type of video has the highest number of searches, and how does this correlate with the time of day?
 CREATE OR REPLACE PROCEDURE VideoSearchCorrelation IS
 BEGIN
     FOR search_rec IN (
